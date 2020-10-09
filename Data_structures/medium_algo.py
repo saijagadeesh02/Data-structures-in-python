@@ -551,29 +551,35 @@
 # print(getPermutations(['a', 'b', 'c']))
 ###################################################################################
 
-def makePermutations(array):
-    if len(array) == 0:
-        return []
-    elif len(array) == 1:
-        return [array]
-    else:
-        l = []
-        for i in range(len(array)):
-            iter_ele = array[i]
-            newarray = array[:i] + array[i+1 : ]
-            for x in makePermutations(newarray):
-                l.append( [iter_ele] + x)
-        return l
+# def makePermutations(array):
+#     if len(array) == 0:
+#         return []
+#     elif len(array) == 1:
+#         return [array]
+#     else:
+#         l = []
+#         for i in range(len(array)):
+#             iter_ele = array[i]
+#             newarray = array[:i] + array[i+1 : ]
+#             for x in makePermutations(newarray):
+#                 l.append( [iter_ele] + x)
+#         return l
 
-print(makePermutations(['a', 'b', 'c']))
+# print(makePermutations(['a', 'b', 'c']))
+#########################################################################
 
+# Power set : A Power Set is a set of all the subsets of a set.
 
-
-
-
-
-
-
+def generatePowerSet(array):
+    powerset = [[]]
+    for ele in array:
+        for j in range(len(powerset)):
+            newset = powerset[j] + [ele]
+            powerset.append(newset)
+    return powerset
+    
+result = generatePowerSet([1,2,3])
+print(result)
 
 
 
