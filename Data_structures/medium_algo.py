@@ -601,3 +601,26 @@ def searchInSortedMatrix(matrix, target):
         else:
             row += 1
     return [-1, -1] # when the target is not there in matrix
+
+#############################################################
+
+# Balanced brackets
+
+def balanceBrackets(string):
+    openingBracs = '({['
+    matchingBracs = { '}':'{', ']':'[', ')':'('}
+    _stack = list()
+    for char in string:
+        if char in openingBracs:
+            _stack.append(char)
+        else:
+            if not len(_stack):
+                return False
+            if _stack[-1] == matchingBracs[char]:
+                _stack.pop()
+            else:
+                return False
+    return False if len(_stack) else True
+
+# print(balanceBrackets('{}{()}[]'))
+###############################################################
