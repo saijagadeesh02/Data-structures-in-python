@@ -570,16 +570,34 @@
 
 # Power set : A Power Set is a set of all the subsets of a set.
 
-def generatePowerSet(array):
-    powerset = [[]]
-    for ele in array:
-        for j in range(len(powerset)):
-            newset = powerset[j] + [ele]
-            powerset.append(newset)
-    return powerset
+# def generatePowerSet(array):
+#     powerset = [[]]
+#     for ele in array:
+#         for j in range(len(powerset)):
+#             newset = powerset[j] + [ele]
+#             powerset.append(newset)
+#     return powerset
     
-result = generatePowerSet([1,2,3])
-print(result)
+# result = generatePowerSet([1,2,3])
+# print(result)
 
+##################################################################################
 
+def searchInSortedMatrix(matrix, target):
+    '''
+    Do search the given target number in the sorted matrix.
+    matrix is sorted in both row and column.
 
+    Time complexity : O(N+M) where N and M are rows and columns
+    Space complexity : O(1)
+    '''
+    row = 0
+    column = len(matrix[0]) - 1
+    while row < len(matrix) and column >= 0:
+        if matrix[row][column] == target:
+            return [row, column]
+        elif matrix[row][column] > target:
+            column -= 1
+        else:
+            row += 1
+    return [-1, -1] # when the target is not there in matrix
