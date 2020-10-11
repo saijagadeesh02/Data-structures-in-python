@@ -624,3 +624,33 @@ def balanceBrackets(string):
 
 # print(balanceBrackets('{}{()}[]'))
 ###############################################################
+
+# Max subset palindrome in a given string
+
+def getMaxSubPalindrome(string):
+    '''
+    Note: checks both the even and odd palindrome pattern
+    '''
+    longest = [0, 1]
+    for i in range(1, len(string)):
+        odd = getPalindrome(i-1, i+1, string)
+        even = getPalindrome(i-1, i, string)
+        current_longest = max(odd, even, key = lambda x: x[1] - x[0])
+        longest = max(longest, current_longest, key= lambda x: x[1] - x[0])
+
+    return string[longest[0] : longest[1]]
+
+def getPalindrome(leftIdx, rightIdx, string):
+    '''
+    Checks the palindrome in the string.
+    '''
+    while leftIdx >= 0 and rightIdx < len(string):
+        if string[leftIdx] != string[rightIdx]:
+            break
+        leftIdx -= 1
+        rightIdx += 1   
+    return [leftIdx+1, rightIdx]
+
+# result = getMaxSubPalindrome('abackelxyzzyxyxbc')
+# print(result)  #xyzzyx
+##########################################################################
