@@ -654,3 +654,22 @@ def getPalindrome(leftIdx, rightIdx, string):
 # result = getMaxSubPalindrome('abackelxyzzyxyxbc')
 # print(result)  #xyzzyx
 ##########################################################################
+
+def groupAnagrams(array):
+    array.sort(key=len)
+    #print(array)
+    groupedWords = []
+    tentative_list = [array[0]] 
+    for i in range(1, len(array)): 
+        if sorted(array[i-1]) != sorted(array[i]):
+            groupedWords.append(tentative_list)
+            tentative_list = [array[i]]
+        else:
+            tentative_list.append(array[i])
+    groupedWords.append(tentative_list)   
+    return groupedWords
+
+# print(groupAnagrams(['iceman', 'yo', 'cat', 'oy', 'act', 'cinema']))
+
+################################################################
+# Check out suffix tree construction.
